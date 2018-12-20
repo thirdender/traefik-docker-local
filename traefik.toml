@@ -1,0 +1,30 @@
+# Uncomment the commented lines to allow Traefik to automatically request SSL
+# certificates from Let's Encrypt. This only works when Let's Encrypt can reach
+# your services, so these lines are not useful for local development.
+
+debug = false
+
+logLevel = "ERROR"
+# defaultEntryPoints = ["https", "http"]
+defaultEntryPoints = ["http"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+#     [entryPoints.http.redirect]
+#     entryPoint = "https"
+#   [entryPoints.https]
+#   address = ":443"
+#   [entryPoints.https.tls]
+
+# Enable retry sending requset if network error
+[retry]
+
+# # Configure Let's Encrypt requests
+# [acme]
+# email = "YOUR EMAIL ADDRESS HERE"
+# storage = "acme.json"
+# entryPoint = "https"
+# onHostRule = true
+# [acme.httpChallenge]
+# entryPoint = "http"

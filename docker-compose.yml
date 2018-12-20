@@ -1,0 +1,25 @@
+version: "3.3"
+
+networks:
+  default:
+  traefik:
+    external: true
+
+services:
+  traefik:
+    image: traefik:alpine
+    restart: always
+    networks:
+      - default
+      - traefik
+    ports:
+      - 80:80
+      - 443:443
+    labels:
+      - "traefik.port=8080"
+      - "traefik.frontend.rule=Host:localhost;PathPrefixStrip:/traefik"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/traefik.toml
+      - ./acme.json:/acme.json
+    command: --api --docker
