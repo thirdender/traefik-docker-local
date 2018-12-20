@@ -17,7 +17,7 @@ From this point forward Traefik will control ports 80 and 443 on the machine, li
 
 To use an external docker-compose project with this Traefik instance, include the following directives in your `docker-compose.yml` file:
 
-```
+```yaml
 version: "3.3"
 
 networks:
