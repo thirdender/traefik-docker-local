@@ -38,8 +38,13 @@ services:
       - internal
     # These labels are how Traefik configures itself for this container. See
     # https://docs.traefik.io/configuration/backends/docker/#on-containers
+    # Note that the value for `HOSTNAME` is pulled from the environment
+    # variables used when launching your project. The easiest way to define
+    # these for your project is in an `.env` file (see the documentation at
+    # https://docs.docker.com/compose/env-file/). Also, this example assumes
+    # your code is listening for HTTP traffic on port 3000 - change if needed.
     labels:
-      - "traefik.backend=dashboard"
+      - "traefik.backend=EXAMPLE"
       - "traefik.docker.network=traefik"
       - "traefik.frontend.rule=Host:${HOSTNAME}"
       - "traefik.port=3000"
